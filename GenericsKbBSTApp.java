@@ -28,7 +28,24 @@ public class GenericsKbBSTApp {
                     break;
 
                 case 2:
-                    // updateAddStatment()
+                    // addOrUpdateTerm()
+                    if (kbBST.getRoot() != null) {
+                        String term, statement, cScore;
+                        scanner.nextLine();
+
+                        System.out.println("Enter the term: ");
+                        term = scanner.nextLine();
+                        System.out.println("Enter the statement: : ");
+                        statement = scanner.nextLine();
+                        System.out.println("Enter the confidence score: ");
+                        cScore = scanner.nextLine();
+
+                        // running the function to update KB
+                        BST.addOrUpdateTerm(kbBST, term, statement, Double.parseDouble(cScore));
+                    } else {
+                        System.out.println("\nKnowledge base has not been loaded.\n");
+
+                    }
                     break;
 
                 case 3:

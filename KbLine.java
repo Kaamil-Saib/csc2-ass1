@@ -3,6 +3,12 @@ public class KbLine implements Comparable<KbLine> {
     private String statement;
     private double cScore;
 
+    public KbLine(String term, String statement, double cScore) {
+        this.term = term;
+        this.statement = statement;
+        this.cScore = cScore;
+    }
+
     // Creates an object out of a line in the kb
     public KbLine(String line) {
         String[] parts = line.split("\t");

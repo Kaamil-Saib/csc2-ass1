@@ -31,7 +31,11 @@ public class BST {
         return root;
     }
 
-    public class TreeNode {
+    public void setRoot(TreeNode newRoot) {
+        this.root = newRoot;
+    }
+
+    public static class TreeNode {
         KbLine kbLine;
         TreeNode left, right;
 
@@ -129,30 +133,31 @@ public class BST {
     //
     //
     //
-    ///////////////////// Adding or updating a term
-    public void addOrUpdateTerm(String term, String statement, double cScore) {
-        root = addOrUpdateTerm(root, term, statement, cScore);
+    ///////////////////////// Adding or updating a term
+    public static void addOrUpdateTerm(BST kbBST, String term, String statement, double cScore) {
+        KbLine newKbLine = new KbLine(term, statement, cScore);
+        kbBST.setRoot(addOrUpdateTerm(kbBST.getRoot(), newKbLine));
     }
 
-    private TreeNode addOrUpdateTerm(TreeNode root, String term, String statement, double cScore) {
+    private static TreeNode addOrUpdateTerm(TreeNode root, KbLine newKbLine) {
         if (root == null) {
-            // The term is not in kb, add a new tree node
-            return new TreeNode(new KbLine(term + "\t" + statement + "\t" + cScore));
+            // The term is not in the BST, add a new tree node
+            return new TreeNode(newKbLine);
         }
 
-        int termComparison = term.compareTo(root.kbLine.getTerm());
+        int termComparison = newKbLine.compareTo(root.kbLine);
 
         if (termComparison == 0) {
-            // Term in kb
-            root.kbLine.setStatement(statement);
-            root.kbLine.setCScore(cScore);
+            // Term is already present, update the information
+            root.kbLine.setStatement(newKbLine.getStatement());
+            root.kbLine.setCScore(newKbLine.getcScore());
             System.out.println("\nKnowledge base updated.\n");
         } else if (termComparison < 0) {
-            // Term is smaller > go to the left subtree
-            root.left = addOrUpdateTerm(root.left, term, statement, cScore);
+            // Term is smaller, go to the left subtree
+            root.left = addOrUpdateTerm(root.left, newKbLine);
         } else {
-            // Term is larger > go to the right subtree
-            root.right = addOrUpdateTerm(root.right, term, statement, cScore);
+            // Term is larger, go to the right subtree
+            root.right = addOrUpdateTerm(root.right, newKbLine);
         }
 
         return root;
