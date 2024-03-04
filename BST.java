@@ -126,4 +126,35 @@ public class BST {
         }
     }
 
+    //
+    //
+    //
+    ///////////////////// Adding or updating a term
+    public void addOrUpdateTerm(String term, String statement, double cScore) {
+        root = addOrUpdateTerm(root, term, statement, cScore);
+    }
+
+    private TreeNode addOrUpdateTerm(TreeNode root, String term, String statement, double cScore) {
+        if (root == null) {
+            // The term is not in kb, add a new tree node
+            return new TreeNode(new KbLine(term + "\t" + statement + "\t" + cScore));
+        }
+
+        int termComparison = term.compareTo(root.kbLine.getTerm());
+
+        if (termComparison == 0) {
+            // Term in kb
+            root.kbLine.setStatement(statement);
+            root.kbLine.setCScore(cScore);
+            System.out.println("\nKnowledge base updated.\n");
+        } else if (termComparison < 0) {
+            // Term is smaller > go to the left subtree
+            root.left = addOrUpdateTerm(root.left, term, statement, cScore);
+        } else {
+            // Term is larger > go to the right subtree
+            root.right = addOrUpdateTerm(root.right, term, statement, cScore);
+        }
+
+        return root;
+    }
 }
