@@ -30,4 +30,21 @@ public class LoadKB {
 
         return kb_array;
     }
+
+    public static BST loadToBST(String fileName) {
+        BST bst = new BST();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                KbLine kbLine = new KbLine(line);
+                bst.insert(kbLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bst;
+    }
+
 }

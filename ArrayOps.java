@@ -43,6 +43,8 @@ public class ArrayOps {
                 kbLine.setCScore(Double.parseDouble(cScore));
                 kb[i] = kbLine.toString();
             }
+            System.out.println("\nKnowledge base updated.\n");
+
         }
         if (termPosition == -1) {
             System.out.println("\nTerm not found.\n");

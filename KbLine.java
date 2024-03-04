@@ -1,4 +1,4 @@
-public class KbLine {
+public class KbLine implements Comparable<KbLine> {
     private String term;
     private String statement;
     private double cScore;
@@ -42,5 +42,11 @@ public class KbLine {
     @Override
     public String toString() {
         return term + "\t" + statement + "\t" + cScore;
+    }
+
+    @Override
+    public int compareTo(KbLine other) {
+        /////////// compare based on the term
+        return this.term.compareTo(other.term);
     }
 }
