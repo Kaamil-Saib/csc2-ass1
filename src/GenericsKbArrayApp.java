@@ -1,18 +1,20 @@
+package src;
+
 import java.util.Scanner;
 
-public class GenericsKbBSTApp {
+public class GenericsKbArrayApp {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         int user_input = 0;
-        ///// intializing bst
-        BST kbBST = new BST();
+        ///// intializing KB
+        String[] kb_array = { null };
 
         while (user_input != 5) {
             ////////// Menu
             System.out.println("Choose an action from the menu:\n" +
                     "1. Load a knowledge base from a file\n" +
-                    "2. Add a new statement to the knowledge base\n" +
+                    "2. Update statement in the knowledge base\n" +
                     "3. Search for an item in the knowledge base by term\n" +
                     "4. Search for an item in the knowledge base by term and sentence\n" +
                     "5. Quit\n" +
@@ -22,14 +24,15 @@ public class GenericsKbBSTApp {
 
             switch (user_input) {
                 case 1:
-                    kbBST = LoadKB.loadToBST("GenericsKB.txt"); // Load to BST
+
+                    //// Load KB to Array/////////////////////////
+                    kb_array = LoadKB.loadToArray("GenericsKB.txt");
                     System.out.println("\nKnowledge base loaded successfully.\n");
-                    // System.out.println(kbBST.getRoot());
                     break;
 
                 case 2:
-                    // addOrUpdateTerm()
-                    if (kbBST.getRoot() != null) {
+                    // updateStatment()
+                    if (kb_array[0] != null) {
                         String term, statement, cScore;
                         scanner.nextLine();
 
@@ -41,7 +44,7 @@ public class GenericsKbBSTApp {
                         cScore = scanner.nextLine();
 
                         // running the function to update KB
-                        BST.addOrUpdateTerm(kbBST, term, statement, Double.parseDouble(cScore));
+                        ArrayOps.updateStatment(term, statement, cScore, kb_array);
                         System.out.println("\nStatement for term " + term + " has been updated.\n");
 
                     } else {
@@ -52,14 +55,14 @@ public class GenericsKbBSTApp {
 
                 case 3:
                     // searchByTerm()
-                    if (kbBST.getRoot() != null) {
+                    if (kb_array[0] != null) {
 
                         scanner.nextLine();
                         System.out.println("\nEnter the term to search: ");
                         String searchTermOnly = scanner.nextLine();
                         System.out.println();
 
-                        String termOnlyResult = BST.searchByTerm(searchTermOnly, kbBST);
+                        String termOnlyResult = ArrayOps.searchByTerm(searchTermOnly, kb_array);
                         System.out.println(termOnlyResult);
 
                     } else {
@@ -68,8 +71,8 @@ public class GenericsKbBSTApp {
                     }
                     break;
                 case 4:
-                    // searchByTermSen()
-                    if (kbBST.getRoot() != null) {
+
+                    if (kb_array[0] != null) {
 
                         scanner.nextLine();
                         System.out.println("\nEnter the term to search: ");
@@ -79,12 +82,15 @@ public class GenericsKbBSTApp {
                         String searchStatement = scanner.nextLine();
                         System.out.println();
 
-                        String termStatementResult = BST.searchByTermSen(searchTerm, searchStatement, kbBST);
+                        String termStatementResult = ArrayOps.searchByTermSen(searchTerm, searchStatement,
+                                kb_array);
                         System.out.println(termStatementResult);
 
                     } else {
                         System.out.println("\nKnowledge base has not been loaded.\n");
+
                     }
+                    // searchByTermSen()
                     break;
                 case 5:
                     // exitConfirm()
