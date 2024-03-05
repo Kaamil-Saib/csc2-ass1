@@ -24,7 +24,7 @@ public class GenericsKbBSTApp {
 
             switch (user_input) {
                 case 1:
-                    kbBST = LoadKB.loadToBST("GenericsKB.txt"); // Load to BST
+                    kbBST = BST.loadToBST("GenericsKB.txt"); // Load to BST
                     System.out.println("\nKnowledge base loaded successfully.\n");
                     // System.out.println(kbBST.getRoot());
                     break;

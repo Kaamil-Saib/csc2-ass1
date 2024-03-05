@@ -26,7 +26,7 @@ public class GenericsKbArrayApp {
                 case 1:
 
                     //// Load KB to Array/////////////////////////
-                    kb_array = LoadKB.loadToArray("GenericsKB.txt");
+                    kb_array = ArrayOps.loadToArray("GenericsKB.txt");
                     System.out.println("\nKnowledge base loaded successfully.\n");
                     break;
 

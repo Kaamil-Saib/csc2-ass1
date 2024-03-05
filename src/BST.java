@@ -1,6 +1,32 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class BST {
+    /**
+     * populates a BST with contents from the textfile
+     * 
+     * @param fileName
+     * @return BST with all the contents from the given textfile
+     */
+    public static BST loadToBST(String fileName) {
+        BST bst = new BST();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                KbLine kbLine = new KbLine(line);
+                bst.insert(kbLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bst;
+    }
+
     private TreeNode root;
 
     /**
@@ -201,4 +227,26 @@ public class BST {
 
         return root;
     }
+
+    /**
+     * Counts the number of lines in KB)
+     *
+     * @return The number of lines in the KB
+     */
+    public int countLines() {
+        return countLines(root);
+    }
+
+    private int countLines(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        // recursive in-order traversal to count lines
+        int leftCount = countLines(root.left);
+        int rightCount = countLines(root.right);
+
+        return 1 + leftCount + rightCount;
+    }
+
 }
