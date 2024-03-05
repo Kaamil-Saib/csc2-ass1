@@ -1,11 +1,12 @@
-echo "Choose an implementation:"
-echo "1. Array implementation"
-echo "2. BST implementation"
-read -rp "Enter your choice: " choice
-if [ $choice -eq 1 ]; then
+compile:
+    javac -cp ./bin GenericsKbArrayApp.java
+    javac -cp ./bin GenericsKbBSTApp.java
+
+clean:
+    rm ./bin/*.class
+
+run_array: compile
     java -cp ./bin GenericsKbArrayApp
-elif [ $choice -eq 2 ]; then
+
+run_bst: compile
     java -cp ./bin GenericsKbBSTApp
-else
-    echo "Invalid choice"
-fi
