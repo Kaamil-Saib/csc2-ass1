@@ -1,3 +1,0 @@
-"Kbline.java" contains an object. Each line of the Knowledge Base will a Kbline object to make use of it's methods.
-"ArrayOps.java" contains operations used to manipulate the Knowledge Base stored in an array.
-"LoadKB.java" contains the methods used to load the kb into a BST or an Array.

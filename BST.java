@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class BST {
     private TreeNode root;
 
@@ -43,35 +40,6 @@ public class BST {
             this.kbLine = kbLine;
             this.left = this.right = null;
         }
-    }
-
-    //
-    //
-    //
-    //////// remove this when complete
-    public KbLine[] getFirstNLines(int n) {
-        List<KbLine> linesList = new ArrayList<>();
-        getFirstNLines(root, n, linesList);
-        return linesList.toArray(new KbLine[0]);
-    }
-
-    private int getFirstNLines(TreeNode root, int n, List<KbLine> linesList) {
-        if (root != null && n > 0) {
-            // In-order traversal for the left subtree
-            n = getFirstNLines(root.left, n, linesList);
-
-            // Add the current line to the list
-            if (n > 0) {
-                linesList.add(root.kbLine);
-                n--;
-            }
-
-            // In-order traversal for the right subtree
-            n = getFirstNLines(root.right, n, linesList);
-
-            return n;
-        }
-        return n;
     }
 
     //

@@ -43,6 +43,8 @@ public class GenericsKbArrayApp {
 
                         // running the function to update KB
                         ArrayOps.updateStatment(term, statement, cScore, kb_array);
+                        System.out.println("\nStatement for term " + term + " has been updated.\n");
+
                     } else {
                         System.out.println("\nKnowledge base has not been loaded.\n");
 

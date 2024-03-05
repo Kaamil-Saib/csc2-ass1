@@ -42,6 +42,8 @@ public class GenericsKbBSTApp {
 
                         // running the function to update KB
                         BST.addOrUpdateTerm(kbBST, term, statement, Double.parseDouble(cScore));
+                        System.out.println("\nStatement for term " + term + " has been updated.\n");
+
                     } else {
                         System.out.println("\nKnowledge base has not been loaded.\n");
 
