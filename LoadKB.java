@@ -4,6 +4,12 @@ import java.io.IOException;
 
 public class LoadKB {
 
+    /**
+     * populates an array with contents from the textfile
+     * 
+     * @param fileName
+     * @return array with all the contents from the given textfile
+     */
     public static String[] loadToArray(String fileName) {
         // get size of array .ie number of lines in KB
         int size = 0;
@@ -31,6 +37,12 @@ public class LoadKB {
         return kb_array;
     }
 
+    /**
+     * populates a BST with contents from the textfile
+     * 
+     * @param fileName
+     * @return BST with all the contents from the given textfile
+     */
     public static BST loadToBST(String fileName) {
         BST bst = new BST();
 

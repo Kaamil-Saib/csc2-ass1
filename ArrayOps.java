@@ -1,6 +1,12 @@
 public class ArrayOps {
 
-    ////// Search by Term Only
+    /**
+     * Search by Term Only
+     * 
+     * @param searchTerm
+     * @param kb
+     * @return Term info
+     */
     public static String searchByTerm(String searchTerm, String[] kb) {
         String result = null;
         for (int i = 0; i < kb.length; i++) {
@@ -16,7 +22,14 @@ public class ArrayOps {
         }
     }
 
-    ////// Search by Term and Sentence
+    /**
+     * Search by Term and Sentence
+     * 
+     * @param searchTerm
+     * @param searchStatement
+     * @param kb
+     * @return Term info
+     */
     public static String searchByTermSen(String searchTerm, String searchStatement, String[] kb) {
         String result = null;
         for (int i = 0; i < kb.length; i++) {
@@ -32,7 +45,14 @@ public class ArrayOps {
         }
     }
 
-    /////// Update statements in the KB given the term
+    /**
+     * Update statements in the KB given the term
+     * 
+     * @param term
+     * @param statement
+     * @param cScore
+     * @param kb
+     */
     public static void updateStatment(String term, String statement, String cScore, String[] kb) {
         int termPosition = -1;
         for (int i = 0; i < kb.length; i++) {

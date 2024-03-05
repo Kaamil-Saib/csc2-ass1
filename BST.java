@@ -1,14 +1,28 @@
 public class BST {
     private TreeNode root;
 
+    /**
+     * BST
+     */
     public BST() {
         this.root = null;
     }
 
+    /**
+     * insert kbline into bst
+     * 
+     * @param kbLine
+     */
     public void insert(KbLine kbLine) {
         root = insertRec(root, kbLine);
     }
 
+    /**
+     * 
+     * @param root
+     * @param kbLine
+     * @return root
+     */
     private TreeNode insertRec(TreeNode root, KbLine kbLine) {
         if (root == null) {
             root = new TreeNode(kbLine);
@@ -24,10 +38,19 @@ public class BST {
         return root;
     }
 
+    /**
+     * 
+     * @return root node
+     */
     public TreeNode getRoot() {
         return root;
     }
 
+    /**
+     * Sets root
+     * 
+     * @param newRoot
+     */
     public void setRoot(TreeNode newRoot) {
         this.root = newRoot;
     }
@@ -45,11 +68,28 @@ public class BST {
     //
     //
     //
-    ///////////////////// Searching by Term and Sentence
+    /**
+     * Searching by Term and Sentence
+     * 
+     * @param searchTerm
+     * @param searchStatement
+     * @param kbBST
+     * @return message that the statement was found or not with the statement and
+     *         its c score
+     */
     public static String searchByTermSen(String searchTerm, String searchStatement, BST kbBST) {
         return searchByTermSen(kbBST.getRoot(), searchTerm, searchStatement);
     }
 
+    /**
+     * helper method for searchByTermSen
+     * 
+     * @param root
+     * @param searchTerm
+     * @param searchStatement
+     * @return message that the statement was found or not with the statement and
+     *         its c score
+     */
     private static String searchByTermSen(TreeNode root, String searchTerm, String searchStatement) {
         if (root == null) {
             return "Term or statement not found.\n";
@@ -71,7 +111,14 @@ public class BST {
     //
     //
     //
-    ///////////////////// Searching by Term only
+    /**
+     * Searching by Term only
+     * 
+     * @param searchTerm
+     * @param kbBST
+     * @return message that statement found -> prints statement and c score or Term
+     *         not found
+     */
     public static String searchByTerm(String searchTerm, BST kbBST) {
         TreeNode resultNode = searchByTerm(kbBST.getRoot(), searchTerm);
         if (resultNode != null) {
@@ -82,31 +129,53 @@ public class BST {
         }
     }
 
+    /**
+     * helper method for searchByTerm
+     * 
+     * @param root
+     * @param searchTerm
+     * @return message that statement found -> prints statement and c score or Term
+     *         not found
+     */
     private static TreeNode searchByTerm(TreeNode root, String searchTerm) {
         if (root == null) {
-            return null; // Term not found
+            return null; // not found
         }
 
         int termComparison = searchTerm.compareTo(root.kbLine.getTerm());
 
         if (termComparison == 0) {
-            return root; // Term found
+            return root; // found
         } else if (termComparison < 0) {
-            return searchByTerm(root.left, searchTerm); // Search in the left subtree
+            return searchByTerm(root.left, searchTerm); // search left subtree
         } else {
-            return searchByTerm(root.right, searchTerm); // Search in the right subtree
+            return searchByTerm(root.right, searchTerm); // search right subtree
         }
     }
 
     //
     //
     //
-    ///////////////////////// Adding or updating a term
+    /**
+     * Adding or updating a term
+     * 
+     * @param kbBST
+     * @param term
+     * @param statement
+     * @param cScore
+     */
     public static void addOrUpdateTerm(BST kbBST, String term, String statement, double cScore) {
         KbLine newKbLine = new KbLine(term, statement, cScore);
         kbBST.setRoot(addOrUpdateTerm(kbBST.getRoot(), newKbLine));
     }
 
+    /**
+     * helper method for addOrUpdateTerm
+     * 
+     * @param root
+     * @param newKbLine
+     * @return
+     */
     private static TreeNode addOrUpdateTerm(TreeNode root, KbLine newKbLine) {
         if (root == null) {
             // The term is not in the BST, add a new tree node
