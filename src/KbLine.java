@@ -1,4 +1,3 @@
-package src;
 
 public class KbLine implements Comparable<KbLine> {
     private String term;
