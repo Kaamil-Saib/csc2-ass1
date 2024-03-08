@@ -1,12 +1,11 @@
 compile:
-    javac -cp ./bin GenericsKbArrayApp.java
-    javac -cp ./bin GenericsKbBSTApp.java
+	javac -d bin src/*.java
 
 clean:
-    rm ./bin/*.class
+	rm ./bin/*.class
 
 run_array: compile
-    java -cp ./bin GenericsKbArrayApp
+	java -cp ./bin GenericsKbArrayApp
 
 run_bst: compile
-    java -cp ./bin GenericsKbBSTApp
+	java -cp ./bin GenericsKbBSTApp
